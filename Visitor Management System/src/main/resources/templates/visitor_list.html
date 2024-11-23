@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Visitor List</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #F4F6F9;
+      margin: 0;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #0D3B66;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #0D3B66;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td {
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Action Buttons */
+    a {
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    a:hover {
+      transform: translateY(-2px);
+    }
+
+    .checkin {
+      background-color: #3A86FF;
+      color: white;
+    }
+
+    .checkout {
+      background-color: #FF6F61;
+      color: white;
+    }
+
+    .edit {
+      background-color: #FFB74D;
+      color: white;
+    }
+
+    .delete {
+      background-color: #E57373;
+      color: white;
+    }
+
+    .checkin:hover {
+      background-color: #0D3B66;
+    }
+
+    .checkout:hover {
+      background-color: #D14F3F;
+    }
+
+    .edit:hover {
+      background-color: #F57C00;
+    }
+
+    .delete:hover {
+      background-color: #C62828;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Visitor List</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Company</th>
+    <th>Email</th>
+    <th>Check-In Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="visitor : ${visitors}">
+    <td th:text="${visitor.name}"></td>
+    <td th:text="${visitor.companyName}"></td>
+    <td th:text="${visitor.email}"></td>
+    <td th:text="${visitor.checkedIn ? 'Checked In' : 'Checked Out'}"></td>
+    <td>
+      <a th:href="@{/visitor/checkin/{id}(id=${visitor.id})}" class="checkin">Check In</a>
+      <a th:href="@{/visitor/checkout/{id}(id=${visitor.id})}" class="checkout">Check Out</a>
+      <a th:href="@{/visitor/edit/{id}(id=${visitor.id})}" class="edit">Edit</a>
+      <a th:href="@{/visitor/delete/{id}(id=${visitor.id})}" class="delete">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

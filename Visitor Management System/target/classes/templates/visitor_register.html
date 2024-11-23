@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Register Visitor</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #F4F6F9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0D3B66;
+      margin-top: 30px;
+      font-size: 32px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #FFFFFF;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .form-container label {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .form-container input,
+    .form-container select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .form-container input:focus,
+    .form-container select:focus {
+      border-color: #3A86FF;
+      outline: none;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3A86FF;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #0D3B66;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+
+      .form-container label {
+        font-size: 14px;
+      }
+
+      .form-container input,
+      .form-container select {
+        font-size: 12px;
+      }
+
+      .form-container button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Register Visitor</h1>
+
+<div class="form-container">
+  <form th:action="@{/visitor/register}" method="post" th:object="${visitor}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required placeholder="Enter visitor's name">
+
+    <label for="companyName">Company/College Name:</label>
+    <input type="text" id="companyName" th:field="*{companyName}" required placeholder="Enter company name">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}" required placeholder="Enter email address">
+
+
+
+    <!-- Check-in Time Input Field -->
+    <label for="checkInTime">Check-in Time:</label>
+    <input type="datetime-local" id="checkInTime" th:field="*{checkInTime}" required>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+</body>
+</html>

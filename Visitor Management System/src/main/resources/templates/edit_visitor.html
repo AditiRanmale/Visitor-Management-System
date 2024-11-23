@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Visitor</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F6F9;
+            margin: 0;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #0D3B66;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form Styles */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3A86FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0D3B66;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #FF6F61;
+        }
+
+        a:hover {
+            color: #D14F3F;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Edit Visitor</h1>
+
+<form th:action="@{/visitor/edit/{id}(id=${visitor.id})}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:value="${visitor.name}" required /><br/>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" th:value="${visitor.email}" required /><br/>
+
+    <label for="companyName">Company:</label>
+    <input type="text" id="companyName" name="companyName" th:value="${visitor.companyName}" required /><br/>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<a href="/visitor/list">Back to Visitor List</a>
+
+</body>
+</html>
